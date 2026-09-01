@@ -1,175 +1,128 @@
 # 📊 Social Pulse — SQL Engagement Analytics
 
-> **Turning social media data into actionable business insights using SQL**
+![Social Pulse Project Overview](screenshots/social-pulse-slide-1.png)
 
-Social Pulse is a SQL-based data analytics project built around a simulated Instagram-style social media platform.
-
-The project analyzes user activity, posts, likes, comments, follows, hashtags, and photo tags to identify engagement patterns and translate them into actionable product, marketing, and user-retention strategies.
-
----
+> **Turning social media data into actionable business insights using SQL.**
 
 ## 🚀 Project Overview
 
-The dataset contains:
+**Social Pulse** is a SQL-based data analytics project built around a simulated Instagram-style social media platform.
 
-* **100 users**
-* **257 posts**
-* **7,488 comments**
-* **8,782 likes**
-* **7,623 follows**
-* **21 hashtags**
-* **501 photo-tags**
-* **7 relational tables**
+The project analyzes users, posts, likes, comments, follows, hashtags, and photo tags to identify engagement patterns and translate them into actionable **product, marketing, retention, and content strategies**.
 
-The analysis follows a simple business framework:
+### 📌 Dataset
 
-**SQL Analysis → Business Insight → Action**
+| Metric         | Value |
+| -------------- | ----: |
+| 👥 Users       |   100 |
+| 📸 Posts       |   257 |
+| 💬 Comments    | 7,488 |
+| ❤️ Likes       | 8,782 |
+| 👥 Follows     | 7,623 |
+| #️⃣ Hashtags   |    21 |
+| 🏷️ Photo Tags |   501 |
+| 🗃️ Tables     |     7 |
 
-The project answers **13 objective questions and 10 subjective business questions** using SQL techniques including:
+**Analysis Framework:**
 
-* JOINs
-* LEFT JOINs
-* GROUP BY
-* HAVING
-* COUNT / COUNT DISTINCT
-* CASE statements
-* Window Functions
-* RANK()
-* CTEs
-* Self-JOINs
-* Aggregations
-* NULL handling
-* Data-quality checks
+```text
+SQL Analysis → Business Insight → Action
+```
 
 ---
 
-## 🎯 Business Objectives
+## 🎯 Objectives
 
-The project focuses on four major areas:
-
-### 1. Data Quality
-
-* Identify duplicate records
-* Check missing/NULL values
-* Validate relational data
-* Recommend constraints for data integrity
-
-### 2. User Engagement
-
-* Analyze posting behavior
-* Identify highly active users
-* Find inactive users
+* Audit the database for duplicates and missing values
+* Analyze user activity and engagement
+* Identify high-value creators
 * Calculate engagement per post
-* Rank users by total engagement
-
-### 3. Content & Hashtag Analysis
-
-* Calculate average tags per post
-* Identify high-performing hashtags
-* Analyze content engagement
-* Explore user-generated content for advertising
-
-### 4. Marketing & Growth
-
-* Identify valuable creators
-* Find potential influencers
-* Segment users by activity
-* Design re-engagement strategies
-* Identify potential brand ambassadors
-* Develop personalized advertising strategies
+* Analyze followers and following behavior
+* Identify inactive users
+* Analyze hashtag performance
+* Identify potential influencers and brand ambassadors
+* Segment users based on activity
+* Develop marketing and retention recommendations
 
 ---
 
 ## 🗄️ Database Structure
 
-The project uses seven relational tables:
+The project uses 7 relational tables:
 
 ```text
 users
-   │
-   ├── photos
-   │      │
-   │      ├── likes
-   │      ├── comments
-   │      └── photo_tags
-   │                  │
-   │                  └── tags
-   │
-   └── follows
+photos
+comments
+likes
+follows
+tags
+photo_tags
 ```
 
-### Tables
+### Relationships
 
-| Table        | Purpose                                 |
-| ------------ | --------------------------------------- |
-| `users`      | User information                        |
-| `photos`     | User-created posts                      |
-| `likes`      | Likes received on posts                 |
-| `comments`   | Comments on posts                       |
-| `follows`    | User follow relationships               |
-| `tags`       | Available hashtags                      |
-| `photo_tags` | Relationship between posts and hashtags |
-
----
-
-## 🔍 Key SQL Analysis
-
-### Data Quality Audit
-
-A combined audit was performed across all seven tables to identify duplicate combinations and NULL values.
-
-The analysis showed that the dataset passed the duplicate/NULL checks used in the project.
-
-**Recommendation:** Use appropriate `PRIMARY KEY` and `UNIQUE` constraints to prevent future duplicate records.
+```text
+users
+ ├── photos
+ │    ├── likes
+ │    ├── comments
+ │    └── photo_tags ─── tags
+ │
+ └── follows
+```
 
 ---
 
-### 👥 User Activity Analysis
+## 🛠️ SQL Concepts Used
 
-Users were analyzed using:
+This project demonstrates:
 
-* Number of posts
-* Likes
-* Comments
-* Overall activity
-
-`LEFT JOIN` was used so that users with no activity were not excluded.
-
-This enabled the creation of user activity segments such as:
-
-* Highly Active
-* Moderately Active
-* Low Activity
+* `JOIN`
+* `LEFT JOIN`
+* `SELF JOIN`
+* `GROUP BY`
+* `HAVING`
+* `COUNT()`
+* `COUNT(DISTINCT)`
+* `SUM()`
+* `AVG()`
+* `ROUND()`
+* `CASE`
+* `RANK() OVER`
+* `CTE`
+* NULL handling
+* Data-quality validation
 
 ---
 
-### ❤️ Engagement Leaders
+## ❤️ Engagement Leaders
 
-Users were ranked using total engagement:
+Users were ranked based on:
 
 ```text
 Total Engagement = Likes + Comments
 ```
 
-The top engagement users included:
+Top users included:
 
-| Rank | User        | Engagement |
-| ---: | ----------- | ---------: |
-|    1 | Eveline95   |        405 |
-|    2 | Cesar93     |        385 |
-|    3 | Clint27     |        375 |
-|    4 | Delfina_V68 |        347 |
-|    5 | Aurelie71   |        318 |
+| Rank | User        | Total Engagement |
+| ---: | ----------- | ---------------: |
+|    1 | Eveline95   |              405 |
+|    2 | Cesar93     |              385 |
+|    3 | Clint27     |              375 |
+|    4 | Delfina_V68 |              347 |
+|    5 | Aurelie71   |              318 |
 
-These users represent potential high-value creators for loyalty programs, creator campaigns, and exclusive features.
+These users represent potential high-value creators for loyalty programs, exclusive features, and creator campaigns.
 
 ---
 
-### 🏷️ Hashtag Analysis
+## 🏷️ Hashtag Analysis
 
-Hashtags were analyzed based on engagement received by posts using them.
+The project analyzed hashtags based on the engagement received by posts using them.
 
-The highest-performing hashtags included:
+Top hashtags included:
 
 * `#dreamy`
 * `#beauty`
@@ -182,13 +135,13 @@ The highest-performing hashtags included:
 * `#beach`
 * `#style`
 
-`#dreamy` achieved the highest average likes in the analysis at approximately **35.75 likes per post**.
+`#dreamy` had the highest average likes at approximately **35.75 likes per post**.
 
 ---
 
-### 📈 Engagement Per Post
+## 📈 Engagement Per Post
 
-Instead of only looking at total engagement, the project also measures:
+The project also measures engagement quality rather than only total engagement.
 
 ```text
 Average Engagement Per Post
@@ -196,29 +149,13 @@ Average Engagement Per Post
 (Likes + Comments) / Total Posts
 ```
 
-This helps identify creators whose individual posts perform strongly even when they do not publish frequently.
+This helps identify creators whose individual posts perform strongly even when they publish less frequently.
 
 ---
 
-### 🔁 Reciprocal Follows
+## 👥 User Segmentation
 
-A self-join on the `follows` table was used to identify users who eventually followed each other.
-
-The analysis compares:
-
-```text
-First Follow Date
-        ↓
-Follow Back Date
-```
-
-This provides a way to study relationship-building and community health.
-
----
-
-## 👤 User Segmentation
-
-Users can be segmented based on their combined activity:
+Users can be divided into three activity groups.
 
 ### 🔥 Highly Active
 
@@ -233,13 +170,13 @@ Frequent posting and high interaction.
 
 ### 🟡 Moderately Active
 
-Regular activity but lower engagement.
+Regular activity with moderate engagement.
 
 **Strategy:**
 
-* Personalized recommendations
+* Personalized content
 * Engagement campaigns
-* Relevant content
+* Relevant recommendations
 
 ### 🔵 Low Activity
 
@@ -247,7 +184,7 @@ Limited posting and interaction.
 
 **Strategy:**
 
-* Welcome-back campaigns
+* Welcome-back offers
 * Notifications
 * Contests
 * Posting incentives
@@ -256,133 +193,165 @@ Limited posting and interaction.
 
 ## 📢 Marketing Insights
 
-The analysis demonstrates how social media data can support marketing decisions.
-
 ### Influencer Marketing
 
-Potential influencers should be selected using both:
+The project recommends selecting influencers using:
 
 ```text
 High Followers + High Engagement
 ```
 
-rather than follower count alone.
+rather than relying only on follower count.
 
 ### Personalized Advertising
 
-User-generated content can be used to identify:
+User-generated content can provide signals about:
 
 * Interests
-* Trending topics
+* Popular topics
 * Hashtag preferences
-* Product/brand interests
+* Products
+* Brands
 * Content themes
 
-These signals can be used to build more relevant audience segments.
+These signals can be used to create more relevant audience segments and advertising campaigns.
+
+---
+
+## 🔁 Reciprocal Follows
+
+A self-join was used on the `follows` table to identify users who eventually followed each other.
+
+The analysis compares the first follow with the later follow-back to understand reciprocal relationships and community behavior.
+
+---
+
+## 🧹 Data Quality
+
+The project performed a data-quality audit across all seven tables.
+
+The analysis checked:
+
+* Duplicate records
+* Missing / `NULL` values
+* Unique records
+* Key relationships
+
+The analysis found no identified duplicate records or missing values for the checked fields.
+
+**Recommendation:** Use appropriate `PRIMARY KEY` and `UNIQUE` constraints to maintain data integrity as the platform grows.
 
 ---
 
 ## ⚠️ Dataset Limitations
 
-The current dataset contains posts through the `photos` table but does **not** distinguish between:
+The dataset has some limitations:
 
-* Photos
-* Videos
-* Reels
-
-Therefore, the project cannot reliably compare engagement across those content formats.
-
-The dataset also does not contain a dedicated shares field, so engagement rankings use:
-
-```text
-Likes + Comments
-```
-
-instead of including shares.
-
-Monthly engagement analysis would also require an appropriate date field/filter.
+* The current schema does not distinguish between **photos, videos, and reels**.
+* There is no **shares** field, so engagement rankings use likes + comments.
+* Monthly engagement analysis requires an appropriate date field/filter.
+* Some subjective questions are therefore addressed using the fields actually available in the dataset.
 
 ---
 
-## 🧠 Key Business Recommendations
+## 💡 Business Recommendations
 
-Based on the analysis:
-
-1. **Reward high-value creators** with badges, early access, and loyalty benefits.
-2. **Re-engage inactive users** using personalized campaigns.
-3. **Use high-performing hashtags** to improve content discovery.
-4. **Separate follower reach from engagement** when selecting influencers.
-5. **Use user-generated content** for personalized advertising.
-6. **Segment users** based on activity and engagement.
-7. **Track reciprocal follows** as a community-health signal.
-8. **Expand the schema** to support video/reel analytics.
-9. **Add campaign data** to measure CTR and conversion rate.
-10. **Build recurring engagement leaderboards** when sufficient date data is available.
-
----
-
-## 🛠️ Tools & Technologies
-
-* **MySQL**
-* **SQL**
-* Relational Database Analysis
-* Data Cleaning
-* Exploratory Data Analysis
-* Business Analytics
-* Data Storytelling
+1. Reward highly engaged creators with badges and exclusive benefits.
+2. Create personalized re-engagement campaigns for inactive users.
+3. Use high-performing hashtags to improve content discovery.
+4. Select influencers using both reach and engagement.
+5. Use user-generated content for personalized advertising.
+6. Segment users based on their activity level.
+7. Track reciprocal follows as a community-health signal.
+8. Extend the database to support video and reel analytics.
+9. Add campaign data to measure CTR and conversion rates.
+10. Build recurring engagement leaderboards when sufficient date data is available.
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-sql/
-    SQL analysis queries
-
-report/
-    Detailed project report
-
-presentation/
-    Social Pulse storytelling presentation
-
-screenshots/
-    Key analysis outputs
+social-pulse-sql-engagement-analytics/
+│
+├── README.md
+│
+├── screenshots/
+│   └── social-pulse-slide-1.png
+│
+├── sql/
+│   ├── 01_data_quality.sql
+│   ├── 02_user_activity.sql
+│   ├── 03_tags_per_post.sql
+│   ├── 04_top_engagement_users.sql
+│   ├── 05_followers_following.sql
+│   ├── 06_avg_engagement_per_post.sql
+│   ├── 07_never_liked_users.sql
+│   ├── 08_hashtag_ad_targeting.sql
+│   ├── 09_content_type_analysis.sql
+│   ├── 10_user_engagement_summary.sql
+│   ├── 11_engagement_leaderboard.sql
+│   ├── 12_top_hashtags.sql
+│   ├── 13_reciprocal_follows.sql
+│   └── 14_user_segmentation.sql
+│
+├── report/
+│   └── Social_Pulse_SQL_Report.docx
+│
+└── presentation/
+    └── Social_Pulse_Storytelling.pptx
 ```
 
 ---
 
-## 📊 Presentation
+## 📊 Project Presentation
 
 The project includes a **15-chapter data storytelling presentation** covering:
 
-1. Data Quality
-2. User Activity
-3. Hashtag Usage
-4. Engagement Leaders
-5. Followers vs Following
-6. Engagement Per Post
-7. Inactive Users
-8. Personalized Advertising
-9. Content Analysis
-10. User Engagement Summary
-11. Engagement Leaderboard
-12. Hashtag Performance
-13. Reciprocal Follows
-14. User Segmentation
-15. Future Opportunities
+* Data Quality
+* User Activity
+* Hashtag Usage
+* Engagement Leaders
+* Followers vs Following
+* Engagement Per Post
+* Inactive Users
+* Personalized Advertising
+* Content Analysis
+* Engagement Summary
+* Engagement Leaderboard
+* Hashtag Performance
+* Reciprocal Follows
+* User Segmentation
+* Future Opportunities
 
 ---
 
 ## 👨‍💻 Author
 
-**Ritik Bhoi**
+### Ritik Bhoi
 
-SQL | Data Analytics | Business Intelligence
+**SQL | Data Analytics | Business Intelligence**
 
 ---
 
 ## ⭐ Project Goal
 
-The goal of Social Pulse is not only to write SQL queries, but to demonstrate how SQL analysis can be transformed into **business decisions and actionable recommendations**.
+The goal of **Social Pulse** is to demonstrate how SQL can transform raw relational data into meaningful business insights.
 
-**Raw Data → SQL → Insight → Business Action**
+```text
+Raw Data
+   ↓
+SQL Analysis
+   ↓
+Insights
+   ↓
+Business Recommendations
+   ↓
+Better Product & Marketing Decisions
+```
+
+---
+
+### 🧰 Tools & Technologies
+
+**MySQL · SQL · Data Analytics · Business Analytics · Data Storytelling**
