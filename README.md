@@ -1,7 +1,5 @@
 # 📊 Social Pulse — SQL Engagement Analytics
 
-![Social Pulse Project Overview](screenshots/social-pulse-slide-1.png)
-
 > **Turning social media data into actionable business insights using SQL.**
 
 ## 🚀 Project Overview
